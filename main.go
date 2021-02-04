@@ -33,10 +33,10 @@ func main() {
 
 	// You need to run the program as  root to do this
 
-	var cred = &syscall.Credential{Uid: 0, Gid: 0, Groups: []uint32{}, NoSetGroups: false}
+	var cred = &syscall.Credential{Uid: 502, Gid: 20, Groups: []uint32{}, NoSetGroups: false}
 
 	// the Noctty flag is used to detach the process from parent tty
-	var sysproc = &syscall.SysProcAttr{Credential: cred}
+	var sysproc = &syscall.SysProcAttr{Credential: cred, GidMappingsEnableSetgroups: true}
 	var attr = os.ProcAttr{
 		Dir: ".",
 		Env: os.Environ(),
