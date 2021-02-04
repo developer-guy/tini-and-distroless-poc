@@ -1,7 +1,9 @@
 # tini-and-distroless-poc
 Demonstration of how you can use tini-static and the distroless base image for go
 
-### Statically vs Dynamically Linking
+![syscallvsexec](./syscall_vs_exec.png)
+
+## Statically vs Dynamically Linking
 A statically linked program has all of it's dependencies compiled into the executable. In this case it does not need to load or utilize any other libraries or code. While a dynamically linked program has external dependencies that need to be present and are loaded during execution.
 
 One of the reasons I love working with GO is because I can compile go code into a statically linked binary. Why bother? Well, it's hard to answer but simply putting it everything is needs is right inside the binary as opposed to a dynamically linked binary. A dynamically linked binary is usually smaller in size as it dynamically links to it's dependencies installed on an OS. Lets take LibC for example, LibC contain certain library functions required by the application code, when I run a dynamically linked binary, it will link to whatever LibC found on the system whereas a statically linked binary has LibC (and other dependent libraries) embeded inside the binary itself hence statically linked binary is larger in size but does not use any of the system libraries. It has many advantages but those are out of scope of this article. This article answers How and assumes you know Why.
