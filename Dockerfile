@@ -24,7 +24,7 @@ COPY . .
 # Build statically compiled binary
 RUN go build -o hello-world
 
-FROM gcr.io/distroless/static-debian10
+FROM alpine
 
 COPY --from=builder /app/hello-world ./
 COPY --from=builder /tini /tini
